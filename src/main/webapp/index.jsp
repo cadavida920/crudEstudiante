@@ -38,14 +38,12 @@
          <table class="table table-bordered table-striped">
              <thead>
              <tr>
-                 
                  <th>id</th>
                  <th>fechaRegistro</th>
                  <th>Firstname</th>
                  <th>Lastname</th>
                  <th>celular</th>
                  <th>documento</th>
-                 
              </tr>
              </thead>
              <tbody id="myTable">
@@ -53,9 +51,14 @@
              <%
                  for(Estudiante e : list){
              %>
-             <tr>
+
+             <tr
+             <%=
+                 e.getFechaRegistro() != null ? "style=\"background-color:#b3dfb3;\"º" : "style=\"background-color:#d1b6bc;\""
+             %>
+             >
                  <td><%=e.getId()%></td>
-                 <td><%=e.getFechaRegistro()%></td>
+                 <td><%=e.getFechaRegistro() == null ? "" :e.getFechaRegistro()%></td>
                      <td><%=e.getNombre()%></td>
                          <td><%=e.getApellido()%></td>
                              <td><%=e.getCelular()%></td>
@@ -80,6 +83,7 @@
              });
          });
      </script>
+
      </body>
      <footer style="text-align: center">No robar mi pagina web</footer>
      </html>

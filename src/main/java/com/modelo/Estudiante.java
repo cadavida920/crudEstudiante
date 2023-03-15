@@ -10,6 +10,12 @@ public class Estudiante {
 
     public Estudiante(){
     }
+
+
+
+
+
+
     public Estudiante (int id, String fechaRegistro, String nombre, String apellido, String celular, String documento){
         this.id = id;
         this.fechaRegistro = fechaRegistro;
