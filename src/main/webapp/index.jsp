@@ -8,14 +8,11 @@
 <head>
         <title>JSP - PAGE </title>
 </head>
-
     <body>
  <%
      EstudianteDao dao = new EstudianteDao();
      List<Estudiante> list = dao.listarEstudiante();
  %>
-
-
      <!DOCTYPE html>
      <html lang="es">
      <head>
@@ -31,7 +28,7 @@
      <body>
 
      <div class="container">
-         <h2>Lista de estudiante</h2>
+         <h2>Lista de estudiante </h2>
          <p>Este es el listado de estudiantes que se encuentren registrados en el colegio</p>
          <input class="form-control" id="myInput" type="text" placeholder="Search..">
          <br>
@@ -44,6 +41,7 @@
                  <th>Lastname</th>
                  <th>celular</th>
                  <th>documento</th>
+                 <th>estado</th>
              </tr>
              </thead>
              <tbody id="myTable">
@@ -54,7 +52,7 @@
 
              <tr
              <%=
-                 e.getFechaRegistro() != null ? "style=\"background-color:#b3dfb3;\"º" : "style=\"background-color:#d1b6bc;\""
+                 e.getestado()  ? "style=\"background-color:#b3dfb3;\"º" : "style=\"background-color:#d1b6bc;\""
              %>
              >
                  <td><%=e.getId()%></td>
@@ -63,6 +61,8 @@
                          <td><%=e.getApellido()%></td>
                              <td><%=e.getCelular()%></td>
                                  <td><%=e.getDocumento()%></td>
+                                     <td><%=e.getestado()%></td>
+
              </tr>
              <%
                  }
@@ -85,7 +85,7 @@
      </script>
 
      </body>
-     <footer style="text-align: center">No robar mi pagina web</footer>
+                <footer style="text-align: center">No robar mi pagina web</footer>
      </html>
 
     </body>

@@ -33,6 +33,7 @@ public class EstudianteDao implements interfacesCrudEstudiante {
                 estudiante.setApellido(rs.getString("apellido"));
                 estudiante.setCelular(rs.getString("celular"));
                 estudiante.setDocumento(rs.getString("documento"));
+                estudiante.setEstado(rs.getBoolean("estado"));
                 estudianteList.add(estudiante);
             }
         } catch (SQLException e) {
@@ -60,6 +61,7 @@ public class EstudianteDao implements interfacesCrudEstudiante {
                 estudiante.setApellido(rs.getString("apellido"));
                 estudiante.setCelular(rs.getString("celular"));
                 estudiante.setDocumento(rs.getString("documento"));
+                estudiante.setEstado(rs.getBoolean("estado"));
             }
 
         } catch (SQLException e) {
@@ -74,13 +76,16 @@ public class EstudianteDao implements interfacesCrudEstudiante {
         try {
             con = cn.getConexion();
             String consultarGurardaEstudianteSql = "INSERT INTO estudiante"
-                    + " (fechaRegistro,nombres,apellido,celular,documento) VALUES((now()),?,?,?,?)";
+                    + " (fechaRegistro,nombres,apellido,celular,documento,estado) VALUES((now()),?,?,?,?)";
 
             pst = con.prepareStatement(consultarGurardaEstudianteSql);
+            pst.setInt(1, estudiante.getId());
             pst.setString(2, estudiante.getNombre());
-            pst.setString(3, estudiante.getApellido());
-            pst.setString(4, estudiante.getCelular());
-            pst.setString(5, estudiante.getDocumento());
+            pst.setString(3, estudiante.getFechaRegistro());
+            pst.setString(4, estudiante.getApellido());
+            pst.setString(5, estudiante.getCelular());
+            pst.setString(6, estudiante.getDocumento());
+            pst.setBoolean(7, estudiante.getestado());
             return pst.execute();
         } catch (SQLException e) {
             Logger.getLogger(EstudianteDao.class.getName()).log(Level.SEVERE, null, e);
@@ -99,6 +104,8 @@ public class EstudianteDao implements interfacesCrudEstudiante {
             pst.setString(3, estudiante.getCelular());
             pst.setString(4, estudiante.getDocumento());
             pst.setInt(5, estudiante.getId());
+            pst.setBoolean(6, estudiante.getestado());
+            pst.setString(7, estudiante.getFechaRegistro());
             pst.executeUpdate();
             return Boolean.TRUE;
         } catch (SQLException e) {
